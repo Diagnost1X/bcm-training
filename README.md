@@ -8,10 +8,10 @@ Allows care agencies to learn more about BCM, sign up to book onto open group / 
 The site is built using the powerful Django framework to manage all of the back-end, create the models and SQL database and route the site to the different pages and views. Bootstrap and JS are used to create a responsive, modern front-end experience.
 ## Features
 ### Existing Features
-None yet!
+- Front-End
+    - Index / Template Page
 ### Features Left to Implement
 - Front-End
-    - Index / Template
     - Home Page
     - About Page
     - Our Services Page
@@ -40,6 +40,8 @@ None yet!
     - I use **SQLite** which comes bundled with **Django** to store all of my data in a SQL database.
 - [Stripe](https://stripe.com/gb)
     - **Stripe** is used to safely and securely handle payments from customers.
+- [jQuery](http://jquery.com)
+    - **jQuery** is used to simplify the use of Javascript and works in conjunction with **Bootstrap**.
 ## Content Used
 ### Sources
 - [Django Documentation](https://docs.djangoproject.com/en/1.11/)
