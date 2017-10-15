@@ -1,3 +1,49 @@
 body {
-    margin-top: 50px;
+    margin-top: 120px;
+}
+#brand_logo {
+    width: 90%;
+    max-width: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#navbar-logo {
+    height: 70px;
+}
+.navbar-brand {
+    height: 100px;
+}
+.navbar-toggle {
+    margin-top: 33px;
+    margin-bottom: 33px;
+}
+.navbar-default {
+    background-color: white;
+    border: none;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: none;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #4A97D6;
+    display: inline-block;
+}
+.nav>li {
+    text-align: center;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #4A97D6;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+}
+@media (min-width: 768px) {
+    .nav>li>a {
+        height: 100px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
 }

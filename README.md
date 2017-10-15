@@ -13,7 +13,6 @@ The site is built using the powerful Django framework to manage all of the back-
 ### Features Left to Implement
 - Front-End
     - Home Page
-    - About Page
     - Our Services Page
     - Contact Us
     - Testimonials
