@@ -1,12 +1,12 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Because Care Matters</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'lib/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'home/lib/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'home/css/base.css' %}">
         {% block head_js %}{% endblock head_js %}
     </head>
     <body>
@@ -20,7 +20,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{% url 'home' %}">
-                        <img id="navbar-logo" src="{% static 'img/BCM.png' %}" alt="BCM">
+                        <img id="navbar-logo" src="{% static 'home/img/BCM.png' %}" alt="BCM">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -48,7 +48,7 @@
         </div>
 
     <!-- JS Scripts -->
-    <script src="{% static 'lib/js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'lib/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/lib/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'home/lib/js/bootstrap.min.js' %}"></script>
     </body>
 </html>
