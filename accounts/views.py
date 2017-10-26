@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.template.context_processors import csrf
 
-from forms import UserRegistrationForm
+from forms import UserRegistrationForm, UserLoginForm
 
 
 # Create your views here.
@@ -29,3 +29,22 @@ def register(request):
     args.update(csrf(request))
 
     return render(request, 'accounts/register.html', args)
+
+
+def login(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            user = auth.authenticate(email=request.POST.get('email'),
+                                     password=request.POST.get('password'))
+
+            if user is not None:
+                auth.login(request, user)
+                return redirect(reverse('home'))
+
+    else:
+        form = UserLoginForm()
+
+    args = {'form': form}
+    args.update(csrf(request))
+    return render(request, 'accounts/login.html', args)
