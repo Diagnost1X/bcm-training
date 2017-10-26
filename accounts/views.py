@@ -48,3 +48,8 @@ def login(request):
     args = {'form': form}
     args.update(csrf(request))
     return render(request, 'accounts/login.html', args)
+
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'home/home.html')
