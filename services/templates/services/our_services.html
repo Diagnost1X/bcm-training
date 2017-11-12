@@ -1,0 +1,34 @@
+{% extends "home/base.html" %}
+{% block content %}
+    {% for training in training %}
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    {{ training.name }}
+                </th>
+                <th>
+                    {{ training.course_length}} days
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                {{ training.description }}
+                </td>
+            </tr>
+            <tr>
+                <td>Min Attendees: {{ training.min_attendees }} Max Attendees: {{ training.max_attendees }}</td>
+                <td><strong>£{{ training.price }}</strong></td>
+            </tr>
+            {% if training.cqc_requirement == True %}
+                <tr>
+                    <td>Mandatory CQC Requirement</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <br>
+    {% endfor %}
+{% endblock content %}
