@@ -1,34 +1,69 @@
 {% extends "home/base.html" %}
+{% load static %}
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'services/css/services.css' %}">
+{% endblock head_css %}
 {% block content %}
-    {% for training in training %}
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    {{ training.name }}
-                </th>
-                <th>
-                    {{ training.course_length}} days
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                {{ training.description }}
-                </td>
-            </tr>
-            <tr>
-                <td>Min Attendees: {{ training.min_attendees }} Max Attendees: {{ training.max_attendees }}</td>
-                <td><strong>£{{ training.price }}</strong></td>
-            </tr>
-            {% if training.cqc_requirement == True %}
-                <tr>
-                    <td>Mandatory CQC Requirement</td>
-                </tr>
-            {% endif %}
-        </tbody>
-    </table>
-    <br>
-    {% endfor %}
+    <div class="col-md-6">
+        <h2 class="text-center">Training</h2>
+        {% for training in training %}
+            <table>
+                <thead class="training-title">
+                    <tr data-toggle="collapse" data-target="#description{{ forloop.counter }}">
+                        <td>{{ training.name }} <span class="caret"></span></td>
+                        <td class="right-cell">{{ training.course_length }} Days</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2"><div id="description{{ forloop.counter }}" class="collapse">{{ training.description }}</div></td>
+                    </tr>
+                    <tr>
+                        <td>{{ training.min_attendees }} People Required</td>
+                        <td class="right-cell"><strong>£{{ training.price }}</strong></td>
+                    </tr>
+                    <tr>
+                        {% if user.is_authenticated %}
+                            <td>Up to {{ training.max_attendees }} People Max</td>
+                            <td class="right-cell"><a href="#">Purchase</a></td>
+                        {% else %}
+                            <td colspan="2">Up to {{ training.max_attendees }} People Max</td>
+                        {% endif %}
+                    </tr>
+                    {% if training.cqc_requirement == True %}
+                        <tr>
+                            <td class="cqc text-center" colspan="2">Mandatory CQC Requirement</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            <br>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        <h2 class="text-center">Consultancy</h2>
+        {% for consultancy in consultancy %}
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="2">{{ consultancy.name }}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="2">{{ consultancy.description }}</td>
+                    </tr>
+                    <tr>
+                        {% if user.is_authenticated %}
+                            <td><strong>£{{ consultancy.price }}</strong></td>
+                            <td class="right-cell"><a href="#">Purchase</a></td>
+                        {% else %}
+                            <td colspan="2"><strong>£{{ consultancy.price }}</strong></td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        {% endfor %}
+    </div>
 {% endblock content %}

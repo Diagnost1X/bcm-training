@@ -1,0 +1,22 @@
+td {
+    padding: 2px 4px;
+}
+table {
+    width: 100%;
+    background-color: lightblue;
+    border: 2px solid black;
+}
+thead {
+    background-color: #4A97D6;
+    color: white;
+}
+.cqc {
+    color: red;
+}
+.training-title {
+    cursor: pointer;
+}
+.right-cell {
+    text-align: right;
+    width: 80px;
+}
