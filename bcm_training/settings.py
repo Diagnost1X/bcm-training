@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'services',
+    'testimonials',
     'django_forms_bootstrap',
 ]
 

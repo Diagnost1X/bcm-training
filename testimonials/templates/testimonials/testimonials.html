@@ -1,0 +1,29 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'testimonials/css/testimonials.css' %}">
+{% endblock head_css %}
+{% block content %}
+    <h2 class="text-center">Testimonials</h2>
+    <div class="col-md-12">
+    {% if not user.testimonials and user.is_authenticated %}
+        <button class="btn btn-primary">Write a Testimonial</button>
+    {% endif %}
+    <br>
+    {% for testimonial in testimonials %}
+        <table>
+            <tr>
+                <td><p>{{ testimonial.comments }}</p></td>
+            </tr>
+            <tr>
+                <td class="author"><em>By {{ testimonial.first_name}} {{ testimonial.initial }} on {{ testimonial.date_created }}</em></td>
+            </tr>
+        </table>
+        {% if testimonial.user == user %}
+            <br>
+            <button id="edit" class="btn btn-primary">Edit</button>
+        {% endif %}
+        <hr>
+    {% endfor %}
+    </div>
+{% endblock content %}

@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^$', home_views.get_home, name='home'),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^services/', include('services.urls')),
+    url(r'^testimonials/', include('testimonials.urls')),
 ]
