@@ -11,24 +11,24 @@ The site is built using the powerful Django framework to manage all of the back-
 - Front-End
     - Index / Template Page
     - Home Page
+    - Our Services Page
+    - Testimonials
     - Register / Login / Logout
 - Back-End
     - Databases
         - User
+        - Packages Available
+        - Testimonials
 ### Features Left to Implement
 - Front-End
-    - Our Services Page
     - Contact Us
-    - Testimonials
     - User-Authenticated Pages
         - Booking Training Packages
         - Arranging Consultancy Meetings
         - Account
 - Back-End
     - Databases
-        - Packages Available
         - Order History
-        - Testimonials
     - Stripe Integration
     
 ## Tech Used
