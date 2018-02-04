@@ -5,8 +5,11 @@ table {
     font-size: 12px;
 }
 #edit {
-    width: 100%;
+    width: 49%;
 }
 #write {
     width: 100%;
+}
+#delete {
+    width: 49%;
 }

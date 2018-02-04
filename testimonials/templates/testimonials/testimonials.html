@@ -7,9 +7,7 @@
     <h2 class="text-center">Testimonials</h2>
     <div class="col-md-12">
     {% if not user.testimonials and user.is_authenticated %}
-        <form action="{% url 'new_testimonial' %}">
-            <button type="submit" id="write" class="btn btn-primary">Write a Testimonial</button>
-        </form>
+        <a href="{% url 'new_testimonial' %}" id="write" class="btn btn-primary">Write a Testimonial</a>
         <br>
     {% endif %}
     <br>
@@ -24,7 +22,8 @@
         </table>
         {% if testimonial.user == user %}
             <br>
-            <button id="edit" class="btn btn-primary">Edit</button>
+                <a href="{% url 'edit_testimonial' testimonial.id %}" id="edit" class="btn btn-primary">Edit</a>
+                <a href="#" id="delete" class="btn btn-danger">Delete</a>
         {% endif %}
         <hr>
     {% endfor %}
