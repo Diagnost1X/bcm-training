@@ -7,7 +7,10 @@
     <h2 class="text-center">Testimonials</h2>
     <div class="col-md-12">
     {% if not user.testimonials and user.is_authenticated %}
-        <button class="btn btn-primary">Write a Testimonial</button>
+        <form action="{% url 'new_testimonial' %}">
+            <button type="submit" id="write" class="btn btn-primary">Write a Testimonial</button>
+        </form>
+        <br>
     {% endif %}
     <br>
     {% for testimonial in testimonials %}

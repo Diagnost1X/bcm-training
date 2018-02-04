@@ -1,0 +1,24 @@
+{% extends "home/base.html" %}
+{% load bootstrap_tags %}
+{% load static %}
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'testimonials/css/testimonials.css' %}">
+{% endblock head_css %}
+{% block content %}
+    <h2 class="text-center">Write Your Testimonial</h2>
+    <div class="col-md-12">
+        <section>
+            <div class="col-md-9">
+                <form method="post" action="{% url 'new_testimonial' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ testimonial_form | as_bootstrap }}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Share Testimonial</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
