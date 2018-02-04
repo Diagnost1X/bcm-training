@@ -62,3 +62,10 @@ def edit_testimonial(request, testimonial_id):
     args.update(csrf(request))
 
     return render(request, 'testimonials/testimonial_form.html', args)
+
+@login_required
+def delete_testimonial(request, testimonial_id):
+    testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
+    testimonial.delete()
+
+    return redirect(reverse('testimonials'))
