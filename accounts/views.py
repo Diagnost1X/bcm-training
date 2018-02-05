@@ -20,7 +20,10 @@ def register(request):
                                      password=request.POST.get('password1'))
 
             if user:
-                return redirect(reverse('home'))
+                messages.success(request, "You have successfully registered, you may now login.")
+                return redirect(reverse('login'))
+            else:
+                messages.error(request, 'Something went wrong, please try again.')
 
     else:
         form = UserRegistrationForm()
@@ -40,7 +43,10 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
+                messages.success(request, "You have successfully logged in.")
                 return redirect(reverse('home'))
+            else:
+                form.add_error(None, "Your email or password was not recognised.")
 
     else:
         form = UserLoginForm()

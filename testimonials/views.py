@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -28,6 +29,7 @@ def new_testimonial(request):
             testimonial.initial = testimonial.initial[0]
             testimonial.save()
 
+            messages.success(request, "Thank you for your feedback!")
             return redirect(reverse('testimonials'))
 
     else:
@@ -50,6 +52,7 @@ def edit_testimonial(request, testimonial_id):
         testimonial_form = TestimonialForm(request.POST, instance=testimonial)
         if testimonial_form.is_valid():
             testimonial_form.save()
+            messages.success(request, "Your testimonial has successfully been updated.")
             return redirect(reverse('testimonials'))
     else:
         testimonial_form = TestimonialForm(instance=testimonial)
@@ -68,4 +71,5 @@ def delete_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
     testimonial.delete()
 
+    messages.success(request, "You have successfully deleted your testimonial.")
     return redirect(reverse('testimonials'))

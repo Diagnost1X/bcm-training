@@ -4,12 +4,12 @@ table {
 .author {
     font-size: 12px;
 }
-#edit {
+.edit {
     width: 49%;
 }
-#write {
+.write {
     width: 100%;
 }
-#delete {
+.delete {
     width: 49%;
 }
