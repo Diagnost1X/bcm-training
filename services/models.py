@@ -2,6 +2,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils import timezone
+
+import bcm_training.settings
+
 
 # Create your models here.
 class Training(models.Model):
@@ -25,3 +29,10 @@ class Consultancy(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class TrainingPurchase(models.Model):
+
+    user = models.ForeignKey(bcm_training.settings.AUTH_USER_MODEL, related_name='purchases')
+    training = models.ForeignKey(Training, related_name='purchases')
+    date = models.DateField(default=timezone.now)
+    stripe_id = models.CharField(max_length=40)
