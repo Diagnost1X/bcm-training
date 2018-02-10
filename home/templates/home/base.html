@@ -56,7 +56,9 @@
         </div>
 
     <!-- JS Scripts -->
-    <script src="{% static 'home/lib/js/jquery-3.2.1.min.js' %}"></script>
+    {% block foot_js %}
+        <script src="{% static 'home/lib/js/jquery-3.2.1.min.js' %}"></script>
+    {% endblock foot_js %}
     <script src="{% static 'home/lib/js/bootstrap.min.js' %}"></script>
     </body>
 </html>

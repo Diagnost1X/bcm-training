@@ -3,12 +3,17 @@
 {% load static %}
 {% block head_js %}
     <script src="{% static 'home/lib/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'home/lib/js/jquery-ui.min.js' %}"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript">
         Stripe.publishableKey = '{{ publishable }}';
     </script>
     <script type="text/javascript" src="{% static 'services/js/stripe.js' %}"></script>
+    <script type="text/javascript" src="{% static 'services/js/services.js' %}"></script>
 {% endblock head_js %}
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'home/lib/css/jquery-ui.min.css' %}">
+{% endblock head_css %}
 {% block content %}
     <h3 class="text-center">Your Purchase Details</h3>
     <br>
@@ -37,3 +42,4 @@
         </section>
     </div>
 {% endblock content %}
+{% block foot_js %}{% endblock foot_js %}

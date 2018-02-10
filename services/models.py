@@ -34,5 +34,6 @@ class TrainingPurchase(models.Model):
 
     user = models.ForeignKey(bcm_training.settings.AUTH_USER_MODEL, related_name='purchases')
     training = models.ForeignKey(Training, related_name='purchases')
-    date = models.DateField(default=timezone.now)
-    stripe_id = models.CharField(max_length=40)
+    purchase_date = models.DateField(default=timezone.now)
+    amount_paid = models.DecimalField(max_digits=6, decimal_places=2)
+    training_date = models.DateField(default=timezone.now)

@@ -48,7 +48,7 @@ def training(request, training_id):
                     confirmed = form.save(False)
                     confirmed.user = request.user
                     confirmed.training = training
-                    confirmed.stripe_id = form.cleaned_data['stripe_id']
+                    confirmed.amount_paid = training.price
                     confirmed.save()
 
                     messages.success(request, "Purchase Successful!")

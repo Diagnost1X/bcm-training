@@ -9,8 +9,11 @@ class TrainingForm(forms.ModelForm):
     expiry_month = forms.CharField(label="Month (MM)", max_length=2)
     expiry_year = forms.CharField(label="Year (YYYY)", max_length=4)
     stripe_id = forms.CharField(widget=forms.HiddenInput)
+    training_date = forms.DateField(widget=forms.TextInput(attrs={
+        'class':'datepicker'
+    }))
 
     class Meta:
         model = TrainingPurchase
-        fields = ['stripe_id']
+        fields = ['training_date']
         
