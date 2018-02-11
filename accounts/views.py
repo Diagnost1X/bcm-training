@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template.context_processors import csrf
 
-from forms import UserRegistrationForm, UserLoginForm
+from forms import UserLoginForm, UserRegistrationForm
+from models import User
 
 
 # Create your views here.
@@ -58,4 +60,24 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
+    messages.success(request, 'You have successfully logged out.')
     return render(request, 'home/home.html')
+
+@login_required
+def account(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    training_purchases = user.t_purchases.all()
+    consultancy_purchases = user.c_purchases.all()
+
+    # Sometimes prints 2 error messages.
+    if not user == request.user:
+        messages.error(request, "You are not authorised to view this page.")
+        return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+
+    args = {
+        'user': user,
+        'training_purchases': training_purchases,
+        'consultancy_purchases': consultancy_purchases
+    }
+
+    return render(request, 'accounts/account.html', args)

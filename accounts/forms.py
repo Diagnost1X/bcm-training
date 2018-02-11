@@ -6,6 +6,10 @@ from accounts.models import User
 
 
 class UserRegistrationForm(UserCreationForm):
+    first_name = forms.CharField(label="First Name", max_length=30)
+    last_name = forms.CharField(label="Last Name", max_length=30)
+    email = forms.CharField(label="Email Address", max_length=254)
+    
     password1 = forms.CharField(
         label='Password',
         widget=forms.PasswordInput

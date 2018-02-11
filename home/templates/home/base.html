@@ -30,7 +30,7 @@
                         <li><a href="">Contact Us</a></li>
                         <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="">Account</a></li>
+                            <li><a href="{% url 'account' request.user.id %}">Account</a></li>
                             <li><a href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
                             <li><a href="{% url 'register' %}">Register</a></li>
@@ -42,12 +42,12 @@
         </nav>
         <div class="container">
             {% if messages %}
-                <div class="alert alert-success">
-                    <div class="messages">
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    </div>
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert alert-{% if message.tags == 'success' %}success{% else %}danger{% endif %}">
+                            {{ message }}   
+                        </div>
+                    {% endfor %}
                 </div>
             {% endif %}
             {% block content %}

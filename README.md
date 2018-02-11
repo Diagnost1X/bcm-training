@@ -14,22 +14,20 @@ The site is built using the powerful Django framework to manage all of the back-
     - Our Services Page
     - Testimonials
     - Register / Login / Logout
-- Back-End
-    - Databases
-        - User
-        - Packages Available
-        - Testimonials
-### Features Left to Implement
-- Front-End
-    - Contact Us
     - User-Authenticated Pages
         - Booking Training Packages
         - Arranging Consultancy Meetings
         - Account
 - Back-End
     - Databases
+        - User
+        - Packages Available
+        - Testimonials
         - Order History
     - Stripe Integration
+### Features Left to Implement
+- Front-End
+    - Contact Us
     
 ## Tech Used
 ### The Tech Used Includes:
@@ -43,6 +41,8 @@ The site is built using the powerful Django framework to manage all of the back-
     - **Stripe** is used to safely and securely handle payments from customers.
 - [jQuery](http://jquery.com)
     - **jQuery** is used to simplify the use of Javascript and works in conjunction with **Bootstrap**.
+- [DataTables](https://datatables.net/index)
+    - I have used the **DataTables jQuery** plugin to allow powerful user control over how they view their data in the order history table in accounts.
 ## Content Used
 ### Sources
 - [Django Documentation](https://docs.djangoproject.com/en/1.11/)
