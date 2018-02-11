@@ -32,8 +32,16 @@ class Consultancy(models.Model):
 
 class TrainingPurchase(models.Model):
 
-    user = models.ForeignKey(bcm_training.settings.AUTH_USER_MODEL, related_name='purchases')
-    training = models.ForeignKey(Training, related_name='purchases')
+    user = models.ForeignKey(bcm_training.settings.AUTH_USER_MODEL, related_name='t_purchases')
+    training = models.ForeignKey(Training, related_name='t_purchases')
     purchase_date = models.DateField(default=timezone.now)
     amount_paid = models.DecimalField(max_digits=6, decimal_places=2)
     training_date = models.DateField(default=timezone.now)
+
+class ConsultancyPurchase(models.Model):
+
+    user = models.ForeignKey(bcm_training.settings.AUTH_USER_MODEL, related_name='c_purchases')
+    consultancy = models.ForeignKey(Consultancy, related_name='c_purhcases')
+    purchase_date = models.DateField(default=timezone.now)
+    amount_paid = models.DecimalField(max_digits=6, decimal_places=2)
+    consultancy_date = models.DateField(default=timezone.now)

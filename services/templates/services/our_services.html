@@ -44,14 +44,14 @@
         <h2 class="text-center">Consultancy</h2>
         {% for consultancy in consultancy %}
             <table>
-                <thead>
-                    <tr>
-                        <td colspan="2">{{ consultancy.name }}</td>
+                <thead class="training-title">
+                    <tr data-toggle="collapse" data-target="#con-description{{ forloop.counter }}">
+                        <td colspan="2">{{ consultancy.name }} <span class="caret"></span></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="2">{{ consultancy.description }}</td>
+                        <td colspan="2"><div id="con-description{{ forloop.counter }}" class="collapse">{{ consultancy.description }}</div></td>
                     </tr>
                     <tr>
                         {% if user.is_authenticated %}
