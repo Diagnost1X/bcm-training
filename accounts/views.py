@@ -69,8 +69,10 @@ def account(request, user_id):
     training_purchases = user.t_purchases.all()
     consultancy_purchases = user.c_purchases.all()
 
-    # Sometimes prints 2 error messages.
     if not user == request.user:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
         messages.error(request, "You are not authorised to view this page.")
         return redirect(reverse('account', kwargs={'user_id': request.user.id}))
 

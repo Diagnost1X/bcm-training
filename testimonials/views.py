@@ -19,7 +19,17 @@ def show_testimonials(request):
 
 @login_required
 def new_testimonial(request):
-    if request.method == 'POST':
+    has_testimonial = Testimonial.objects.filter(user_id=request.user).exists()
+
+    # Protecting against users trying to enter more than one testimonial
+    if has_testimonial == True:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, 'You have already shared a testimonial, please edit or delete your current one.')
+        return redirect(reverse('testimonials'))
+
+    elif request.method == 'POST':
         testimonial_form = TestimonialForm(request.POST)
         if testimonial_form.is_valid():
             testimonial = testimonial_form.save(False)
@@ -38,7 +48,8 @@ def new_testimonial(request):
     args = {
         'testimonial_form': testimonial_form,
         'form_action': reverse('new_testimonial'),
-        'button_text': 'Share Testimonial'
+        'button_text': 'Share Testimonial',
+        'header_text': 'Write Your Testimonial'
     }
     args.update(csrf(request))
 
@@ -48,7 +59,15 @@ def new_testimonial(request):
 def edit_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
 
-    if request.method == 'POST':
+    # Protecting against users maliciously editing other users testimonials
+    if not testimonial.user == request.user and not request.user.is_staff:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, 'You can only edit your own testimonial.')
+        return redirect(reverse('testimonials'))
+
+    elif request.method == 'POST':
         testimonial_form = TestimonialForm(request.POST, instance=testimonial)
         if testimonial_form.is_valid():
             testimonial_form.save()
@@ -60,7 +79,8 @@ def edit_testimonial(request, testimonial_id):
     args = {
         'testimonial_form': testimonial_form,
         'form_action': reverse('edit_testimonial', kwargs={'testimonial_id': testimonial.id}),
-        'button_text': 'Update Testimonial'
+        'button_text': 'Update Testimonial',
+        'header_text': 'Edit Your Testimonial'
     }
     args.update(csrf(request))
 
@@ -69,6 +89,15 @@ def edit_testimonial(request, testimonial_id):
 @login_required
 def delete_testimonial(request, testimonial_id):
     testimonial = get_object_or_404(Testimonial, pk=testimonial_id)
+
+    # Protecting against users maliciously deleting other users testimonials
+    if not testimonial.user == request.user and not request.user.is_staff:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, 'You can only delete your own testimonial.')
+        return redirect(reverse('testimonials'))
+
     testimonial.delete()
 
     messages.success(request, "You have successfully deleted your testimonial.")
