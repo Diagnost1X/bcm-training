@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+{% load bootstrap_tags %}
+{% load static %}
+{% block head_js %}
+    <script src="{% static 'home/lib/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#id_first_name').val('{{ user.first_name }}');
+            $('#id_last_name').val('{{ user.last_name }}');
+        });
+    </script>
+{% endblock head_js %}
+{% block content %}
+    <h2 class="text-center">Update Your Name</h2>
+    <div class="col-md-12">
+        <section>
+            <div class="col-md-12">
+                <form method="post" action="{{ form_action }}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ change_name_form | as_bootstrap }}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit Changes</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
+{% block foot_js %}{% endblock foot_js %}

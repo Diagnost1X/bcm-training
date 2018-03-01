@@ -49,3 +49,8 @@ class UserRegistrationForm(UserCreationForm):
 class UserLoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class ChangeName(forms.Form):
+    first_name = forms.CharField(label="First Name", max_length=30)
+    last_name = forms.CharField(label="Last Name", max_length=30)

@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.context_processors import csrf
 
-from forms import UserLoginForm, UserRegistrationForm
+from forms import ChangeName, UserLoginForm, UserRegistrationForm
 from models import User
 
 
@@ -57,7 +57,7 @@ def login(request):
     args.update(csrf(request))
     return render(request, 'accounts/login.html', args)
 
-
+@login_required
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You have successfully logged out.')
@@ -69,6 +69,7 @@ def account(request, user_id):
     training_purchases = user.t_purchases.all()
     consultancy_purchases = user.c_purchases.all()
 
+    # Protecting against users maliciously accessing other users accounts and order history
     if not user == request.user:
         # To ensure error message displays correctly
         storage = messages.get_messages(request)
@@ -83,3 +84,35 @@ def account(request, user_id):
     }
 
     return render(request, 'accounts/account.html', args)
+
+@login_required
+def change_name(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+
+    # Protecting against users maliciously editing other users accounts
+    if not user == request.user:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, "You are not authorised to view this page.")
+        return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+
+    elif request.method == 'POST':
+        change_name_form = ChangeName(request.POST)
+        if change_name_form.is_valid():
+            user.first_name = change_name_form.cleaned_data['first_name']
+            user.last_name = change_name_form.cleaned_data['last_name']
+            user.save()
+            messages.success(request, "Your have successfully updated your name.")
+            return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+    else:
+        change_name_form = ChangeName()
+
+    args = {
+        'user': user,
+        'change_name_form': change_name_form,
+        'form_action': reverse('change_name', kwargs={'user_id': request.user.id})
+    }
+    args.update(csrf(request))
+
+    return render(request, 'accounts/change_name.html', args)

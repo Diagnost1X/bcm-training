@@ -11,3 +11,39 @@ th {
     padding: 3px;
     border: black solid 1px;*/
 }
+#side-nav li {
+    list-style-type: none;
+    border-radius: 90px;
+    margin: 10px 40px;
+    background-color: #4A97D6;
+    text-align: center;
+}
+#side-nav li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+#side-nav li a:focus {
+    color: yellow;
+}
+#side-nav {
+    padding-left: 0;
+}
+@media (min-width: 768px) {
+    #side-nav li {
+        border-radius: 0px;
+        margin: 0px;
+        background-color: initial;
+        text-align: left;
+    }
+    #side-nav li a {
+        display: inline;
+        color: #337ab7;
+    }
+    #side-nav li a:hover {
+        text-decoration: underline;
+    }
+    #side-nav li a:focus {
+        color: initial;
+    }
+}
