@@ -54,3 +54,8 @@ class UserLoginForm(forms.Form):
 class ChangeName(forms.Form):
     first_name = forms.CharField(label="First Name", max_length=30)
     last_name = forms.CharField(label="Last Name", max_length=30)
+
+
+class ChangeEmail(forms.Form):
+    email1 = forms.EmailField(label='New Email Address', max_length=254)
+    email2 = forms.EmailField(label='Confirm New Email', max_length=254)

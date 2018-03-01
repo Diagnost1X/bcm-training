@@ -20,9 +20,9 @@
         <ul id="side-nav">
             <li><a href="{% url 'change_name' request.user.id %}">Change Name</a></li>
             <hr class="hidden-xs">
-            <li><a href="#">Change Email Address</a></li>
+            <li><a href="{% url 'change_email' request.user.id %}">Change Email Address</a></li>
             <hr class="hidden-xs">
-            <li><a href="#">Change Password</a></li>
+            <li><a href="{% url 'change_password' request.user.id %}">Change Password</a></li>
         </ul>
     </div>
     <section class="col-md-9">
