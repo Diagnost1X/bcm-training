@@ -54,11 +54,26 @@ def consultancy(request, consultancy_id):
     else:
         form = ConsultancyForm()
 
+    # Passes an array that Javascript can interpret for disabling dates in datepicker
+    dates_taken = []
+    for date in TrainingPurchase.objects.values_list('training_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
+    for date in ConsultancyPurchase.objects.values_list('consultancy_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
     args = {
         'form': form,
         'form_action': reverse('consultancy', kwargs={'consultancy_id': consultancy.id}),
         'consultancy': consultancy,
-        'publishable': settings.STRIPE_PUBLISHABLE
+        'publishable': settings.STRIPE_PUBLISHABLE,
+        'dates_taken': dates_taken,
     }
     args.update(csrf(request))
 
@@ -95,11 +110,26 @@ def training(request, training_id):
     else:
         form = TrainingForm()
     
+    # Passes an array that Javascript can interpret for disabling dates in datepicker
+    dates_taken = []
+    for date in TrainingPurchase.objects.values_list('training_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
+    for date in ConsultancyPurchase.objects.values_list('consultancy_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
     args = {
         'form': form,
         'form_action': reverse('training', kwargs={'training_id': training.id}),
         'training': training,
-        'publishable': settings.STRIPE_PUBLISHABLE
+        'publishable': settings.STRIPE_PUBLISHABLE,
+        'dates_taken': dates_taken,
     }
     args.update(csrf(request))
 

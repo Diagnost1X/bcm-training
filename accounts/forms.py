@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
@@ -12,7 +13,8 @@ class UserRegistrationForm(UserCreationForm):
     
     password1 = forms.CharField(
         label='Password',
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput,
+        help_text=password_validation.password_validators_help_text_html()
     )
 
     password2 = forms.CharField(
@@ -32,7 +34,8 @@ class UserRegistrationForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             message = "Passwords do not match"
             raise ValidationError(message)
-
+        # Added to improve password security and mirror change password form validation
+        password_validation.validate_password(password2)
         return password2
 
     def save(self, commit=True):

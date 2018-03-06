@@ -7,9 +7,21 @@
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript">
         Stripe.publishableKey = '{{ publishable }}';
+        var datesTaken = {{ dates_taken | safe }};
+        $(function() {
+            $( "#id_consultancy_date" ).attr('readonly', 'true');
+            $( ".datepicker" ).datepicker({
+                yearRange: "2018:2019",
+                dateFormat: "dd/mm/yy",
+                minDate: '1',
+                beforeShowDay: function(date){
+                    var string = jQuery.datepicker.formatDate('yy, m, d', date);
+                    return [ datesTaken.indexOf(string) == -1 ]
+                }
+            });
+        });
     </script>
     <script type="text/javascript" src="{% static 'services/js/stripe.js' %}"></script>
-    <script type="text/javascript" src="{% static 'services/js/services.js' %}"></script>
 {% endblock head_js %}
 {% block head_css %}
     <link rel="stylesheet" href="{% static 'home/lib/css/jquery-ui.min.css' %}">
