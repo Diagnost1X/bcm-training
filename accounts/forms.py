@@ -9,7 +9,10 @@ from accounts.models import User
 class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(label="First Name", max_length=30)
     last_name = forms.CharField(label="Last Name", max_length=30)
-    email = forms.CharField(label="Email Address", max_length=254)
+    # Show user their email in lowercase so they know how it will be submitted
+    email = forms.CharField(label="Email Address", max_length=254, widget=forms.TextInput(attrs={
+        'style':'text-transform: lowercase;'
+    }), help_text="Email Addresses must be lowercase.")
     
     password1 = forms.CharField(
         label='Password',
@@ -40,7 +43,7 @@ class UserRegistrationForm(UserCreationForm):
 
     def save(self, commit=True):
         instance = super(UserRegistrationForm, self).save(commit=False)
-
+        instance.email = instance.email.lower()
         instance.username = instance.email
 
         if commit:
@@ -50,7 +53,9 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserLoginForm(forms.Form):
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.TextInput(attrs={
+        'style':'text-transform: lowercase;'
+        }))
     password = forms.CharField(widget=forms.PasswordInput)
 
 
@@ -60,5 +65,10 @@ class ChangeName(forms.Form):
 
 
 class ChangeEmail(forms.Form):
-    email1 = forms.EmailField(label='New Email Address', max_length=254)
-    email2 = forms.EmailField(label='Confirm New Email', max_length=254)
+    # Show user their email in lowercase so they know how it will be submitted
+    email1 = forms.EmailField(label='New Email Address', max_length=254, widget=forms.TextInput(attrs={
+        'style':'text-transform: lowercase;'
+        }), help_text="Email Addresses must be lowercase.")
+    email2 = forms.EmailField(label='Confirm New Email', max_length=254, widget=forms.TextInput(attrs={
+        'style':'text-transform: lowercase;'
+        }))

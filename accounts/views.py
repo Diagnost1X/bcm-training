@@ -18,17 +18,21 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-
-            user = auth.authenticate(email=request.POST.get('email'),
-                                     password=request.POST.get('password1'))
-
-            if user:
-                messages.success(request, "You have successfully registered and been logged in.")
-                auth.login(request, user)
-                return redirect(reverse('account', kwargs={'user_id': user.id}))
+            # Check if user already exists in database
+            if User.objects.filter(email=request.POST.get('email').strip().lower()).exists():
+                messages.error(request, 'An account with this email address already exists. Please try to reset your password from the login page.')
             else:
-                messages.error(request, 'Something went wrong, please try again.')
+                form.save()
+
+                user = auth.authenticate(email=request.POST.get('email').lower(),
+                                        password=request.POST.get('password1'))
+
+                if user:
+                    messages.success(request, "You have successfully registered and been logged in.")
+                    auth.login(request, user)
+                    return redirect(reverse('account', kwargs={'user_id': user.id}))
+                else:
+                    messages.error(request, 'Something went wrong, please try again.')
 
     else:
         form = UserRegistrationForm()
@@ -43,7 +47,7 @@ def login(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
-            user = auth.authenticate(email=request.POST.get('email'),
+            user = auth.authenticate(email=request.POST.get('email').lower(),
                                      password=request.POST.get('password'))
 
             if user is not None:
@@ -135,8 +139,8 @@ def change_email(request, user_id):
     elif request.method == 'POST':
         change_email_form = ChangeEmail(request.POST)
         if change_email_form.is_valid():
-            email1 = change_email_form.cleaned_data['email1']
-            email2 = change_email_form.cleaned_data['email2']
+            email1 = change_email_form.cleaned_data['email1'].lower()
+            email2 = change_email_form.cleaned_data['email2'].lower()
             if email1 == email2:
                 user.email = email2
                 user.username = email2
