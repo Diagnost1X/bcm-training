@@ -52,6 +52,19 @@ The site is built using the powerful Django framework to manage all of the back-
     - [This](https://stackoverflow.com/a/48167311/9429543) post helped me understand how to implement a Django's built-in password change form with my own website design without having to start from scratch.
     - [This](https://stackoverflow.com/a/15400806/9429543) post helped me understand how to disable dates in the datepicker that clients had already booked.
     - [This](https://stackoverflow.com/questions/3798812/how-to-compare-dates-in-django) post helped me better understand the property decorator in Django, where to use it and how to implement it to disable users changing dates that have already passed.
+## Features Explained
+- Accounts
+    - A check is performed during registration to ensure that email does not already exist. Emails are also forced to lowercase as they are not case-sensitive and it makes checking the database for existing users easier.
+    - Users are made aware of the password requirements when registering or altering their password.
+    - Users can change date of any training or consultancies that they have previously booked and paid for as long as the date hasn't passed. This is done through simply selecting the relevant date on the order history table. Only dates not taken or in the past can be chosen.
+    - Users can change their name, email and password through three separate links on the accounts page. Validation checks are performed on the entered data.
+- Services
+    - When purchasing a service the user is prevented from choosing dates from the past including today. They are also limited to days not already booked by themselves or other users.
+- Testimonials
+    - Users can add only one testimonial, which can be edited or deleted as necessary.
+    - Care has been taken to only allow users to edit and delete their own testimonials (except if they are staff).
+    - Users are prevented from creating more than one testimonial at any one time.
+
 ## Key Information
 - When attempting to process a transaction from the services page to check the website funcionality please use the following details:
     - Card Number - 4242424242424242

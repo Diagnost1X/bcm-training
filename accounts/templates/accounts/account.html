@@ -1,15 +1,17 @@
 {% extends "home/base.html" %}
 {% load static %}
 {% block head_css %}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{% static 'accounts/lib/DataTables/datatables.min.css' %}">
     <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 {% endblock head_css %}
 {% block head_js %}
     <script src="{% static 'home/lib/js/jquery-3.2.1.min.js' %}"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="{% static 'accounts/lib/DataTables/datatables.min.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#orderHistory').DataTable();
+            $('#orderHistory').DataTable( {
+                responsive: true,
+            });
         });
     </script>
 {% endblock head_js %}
@@ -30,9 +32,9 @@
         <table id="orderHistory">
             <thead>
                 <tr>
-                    <th class="hidden-xs">Type</th>
                     <th>Product</th>
-                    <th class="hidden-xs">Date Booked</th>
+                    <th>Type</th>
+                    <th>Date Booked</th>
                     <th>Amount Paid</th>
                     <th>Date Purchased</th>
                 </tr>
@@ -40,9 +42,9 @@
             <tbody>
                 {% for purchase in training_purchases %}
                     <tr>
-                        <td class="hidden-xs">Training</td>
                         <td>{{ purchase.training }}</td>
-                        <td class="hidden-xs">
+                        <td>Training</td>
+                        <td>
                             {% if purchase.has_passed %}
                                 {{ purchase.training_date }}
                             {% else %}
@@ -55,9 +57,9 @@
                 {% endfor %}
                 {% for purchase in consultancy_purchases %}
                     <tr>
-                        <td class="hidden-xs">Consultancy</td>
                         <td>{{ purchase.consultancy }}</td>
-                        <td class="hidden-xs">
+                        <td>Consultancy</td>
+                        <td>
                             {% if purchase.has_passed %}
                                 {{ purchase.consultancy_date }}
                             {% else %}
