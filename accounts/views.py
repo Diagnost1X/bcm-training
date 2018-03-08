@@ -9,8 +9,10 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.context_processors import csrf
 
-from forms import ChangeEmail, ChangeName, UserLoginForm, UserRegistrationForm
+from forms import (ChangeConsultancy, ChangeEmail, ChangeName, ChangeTraining,
+                   UserLoginForm, UserRegistrationForm)
 from models import User
+from services.models import ConsultancyPurchase, TrainingPurchase
 
 
 # Create your views here.
@@ -193,3 +195,117 @@ def change_password(request, user_id):
     args.update(csrf(request))
 
     return render(request, 'accounts/change_password.html', args)
+
+@login_required
+def change_training(request, user_id, order_id):
+    user = get_object_or_404(User, pk=user_id)
+    order = get_object_or_404(TrainingPurchase, pk=order_id)
+
+    # Protecting against users maliciously editing other users accounts
+    if not order.user_id == request.user.id:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, "You are not authorised to view this page.")
+        return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+
+    # Protect against users editing dates that have passed
+    elif order.has_passed:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, "This order is in the past, the date cannot be altered.")
+        return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+
+    elif request.method == 'POST':
+        change_training = ChangeTraining(request.POST)
+        if change_training.is_valid():
+            order.training_date = change_training.cleaned_data['training_date']
+            order.save()
+            messages.success(request, "You have successfully updated the date of your training.")
+            return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+    
+    else:
+        change_training = ChangeTraining()
+
+    # Passes an array that Javascript can interpret for disabling dates in datepicker
+    dates_taken = []
+    for date in TrainingPurchase.objects.values_list('training_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
+    for date in ConsultancyPurchase.objects.values_list('consultancy_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
+    args = {
+        'user': user,
+        'order': order,
+        'change_training': change_training,
+        'form': reverse('change_training', kwargs={'user_id': request.user.id, 'order_id': order.id}),
+        'dates_taken': dates_taken,
+    }
+    args.update(csrf(request))
+
+    return render(request, 'accounts/change_training.html', args)
+
+@login_required
+def change_consultancy(request, user_id, order_id):
+    user = get_object_or_404(User, pk=user_id)
+    order = get_object_or_404(ConsultancyPurchase, pk=order_id)
+
+    # Protecting against users maliciously editing other users accounts
+    if not order.user_id == request.user.id:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, "You are not authorised to view this page.")
+        return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+
+    # Protect against users editing dates that have passed
+    elif order.has_passed:
+        # To ensure error message displays correctly
+        storage = messages.get_messages(request)
+        storage.used = True
+        messages.error(request, "This order is in the past, the date cannot be altered.")
+        return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+
+    elif request.method == 'POST':
+        change_consultancy = ChangeConsultancy(request.POST)
+        if change_consultancy.is_valid():
+            order.consultancy_date = change_consultancy.cleaned_data['consultancy_date']
+            order.save()
+            messages.success(request, "You have successfully updated your consultancy date.")
+            return redirect(reverse('account', kwargs={'user_id': request.user.id}))
+    
+    else:
+        change_consultancy = ChangeConsultancy()
+
+    # Passes an array that Javascript can interpret for disabling dates in datepicker
+    dates_taken = []
+    for date in TrainingPurchase.objects.values_list('training_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
+    for date in ConsultancyPurchase.objects.values_list('consultancy_date'):
+        date = str(date)
+        date = date[15:]
+        date = date[:-3]
+        dates_taken.append(date)
+
+    args = {
+        'user': user,
+        'order': order,
+        'change_consultancy': change_consultancy,
+        'form': reverse('change_consultancy', kwargs={'user_id': request.user.id, 'order_id': order.id}),
+        'dates_taken': dates_taken,
+    }
+    args.update(csrf(request))
+
+    return render(request, 'accounts/change_consultancy.html', args)

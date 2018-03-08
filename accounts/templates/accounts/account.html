@@ -33,7 +33,7 @@
                     <th class="hidden-xs">Type</th>
                     <th>Product</th>
                     <th class="hidden-xs">Date Booked</th>
-                    <th>Cost</th>
+                    <th>Amount Paid</th>
                     <th>Date Purchased</th>
                 </tr>
             </thead>
@@ -42,7 +42,13 @@
                     <tr>
                         <td class="hidden-xs">Training</td>
                         <td>{{ purchase.training }}</td>
-                        <td class="hidden-xs">{{ purchase.training_date }}</td>
+                        <td class="hidden-xs">
+                            {% if purchase.has_passed %}
+                                {{ purchase.training_date }}
+                            {% else %}
+                                <a href="{% url 'change_training' request.user.id purchase.id %}">{{ purchase.training_date }}</a>
+                            {% endif %}
+                        </td>
                         <td>£{{ purchase.amount_paid }}</td>
                         <td>{{ purchase.purchase_date }}</td>
                     </tr>
@@ -51,7 +57,13 @@
                     <tr>
                         <td class="hidden-xs">Consultancy</td>
                         <td>{{ purchase.consultancy }}</td>
-                        <td class="hidden-xs">{{ purchase.consultancy_date }}</td>
+                        <td class="hidden-xs">
+                            {% if purchase.has_passed %}
+                                {{ purchase.consultancy_date }}
+                            {% else %}
+                                <a href="{% url 'change_consultancy' request.user.id purchase.id %}">{{ purchase.consultancy_date }}</a>
+                            {% endif %}
+                        </td>
                         <td>£{{ purchase.amount_paid }}</td>
                         <td>{{ purchase.purchase_date }}</td>
                     </tr>

@@ -72,3 +72,15 @@ class ChangeEmail(forms.Form):
     email2 = forms.EmailField(label='Confirm New Email', max_length=254, widget=forms.TextInput(attrs={
         'style':'text-transform: lowercase;'
         }))
+
+
+class ChangeTraining(forms.Form):
+    training_date = forms.DateField(widget=forms.TextInput(attrs={
+        'class':'datepicker'
+    }))
+
+
+class ChangeConsultancy(forms.Form):
+    consultancy_date = forms.DateField(widget=forms.TextInput(attrs={
+        'class':'datepicker'
+    }))

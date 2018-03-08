@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from datetime import date
+
 from django.db import models
 from django.utils import timezone
 
@@ -38,6 +40,10 @@ class TrainingPurchase(models.Model):
     amount_paid = models.DecimalField(max_digits=6, decimal_places=2)
     training_date = models.DateField(default=timezone.now)
 
+    @property
+    def has_passed(self):
+        return date.today() >= self.training_date
+
 class ConsultancyPurchase(models.Model):
 
     user = models.ForeignKey(bcm_training.settings.AUTH_USER_MODEL, related_name='c_purchases')
@@ -45,3 +51,7 @@ class ConsultancyPurchase(models.Model):
     purchase_date = models.DateField(default=timezone.now)
     amount_paid = models.DecimalField(max_digits=6, decimal_places=2)
     consultancy_date = models.DateField(default=timezone.now)
+
+    @property
+    def has_passed(self):
+        return date.today() >= self.consultancy_date

@@ -1,0 +1,44 @@
+{% extends "home/base.html" %}
+{% load bootstrap_tags %}
+{% load static %}
+{% block head_js %}
+    <script src="{% static 'home/lib/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'home/lib/js/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript">
+        var datesTaken = {{ dates_taken | safe }};
+        $(function() {
+            $( "#id_training_date" ).attr('readonly', 'true');
+            $( ".datepicker" ).datepicker({
+                yearRange: "2018:2019",
+                dateFormat: "dd/mm/yy",
+                minDate: '1',
+                beforeShowDay: function(date){
+                    var string = jQuery.datepicker.formatDate('yy, m, d', date);
+                    return [ datesTaken.indexOf(string) == -1 ]
+                }
+            });
+        });
+    </script>
+{% endblock head_js %}
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'home/lib/css/jquery-ui.min.css' %}">
+{% endblock head_css %}
+{% block content %}
+    <h2 class="text-center">Update Your Training Date</h2>
+    <div class="col-md-12">
+        <section>
+            <div class="col-md-12">
+                <form method="post" action="{{ form }}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ change_training | as_bootstrap }}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit New Date</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+{% endblock content %}
+{% block foot_js %}{% endblock foot_js %}

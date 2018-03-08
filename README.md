@@ -51,6 +51,7 @@ The site is built using the powerful Django framework to manage all of the back-
     - **stack overflow** is always invaluable at providing support when struggling to implement a new feature or fix a bug.
     - [This](https://stackoverflow.com/a/48167311/9429543) post helped me understand how to implement a Django's built-in password change form with my own website design without having to start from scratch.
     - [This](https://stackoverflow.com/a/15400806/9429543) post helped me understand how to disable dates in the datepicker that clients had already booked.
+    - [This](https://stackoverflow.com/questions/3798812/how-to-compare-dates-in-django) post helped me better understand the property decorator in Django, where to use it and how to implement it to disable users changing dates that have already passed.
 ## Key Information
 - When attempting to process a transaction from the services page to check the website funcionality please use the following details:
     - Card Number - 4242424242424242
