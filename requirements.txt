@@ -10,3 +10,4 @@ urllib3==1.22
 mysql-python==1.2.5
 gunicorn==19.7.1
 dj-database-url==0.2.1
+whitenoise==3.3.1
