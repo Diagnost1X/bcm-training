@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="mobile-navbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{% url 'our_services' %}">Our Services</a></li>
-                        <li><a href="">Contact Us</a></li>
+                        <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
                         <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
                         {% if user.is_authenticated %}
                             <li><a href="{% url 'account' request.user.id %}">Account</a></li>

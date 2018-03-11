@@ -1,0 +1,1 @@
+web: gunicorn bcm_training.wsgi:application

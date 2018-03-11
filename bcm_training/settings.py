@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'services',
     'testimonials',
+    'contact_us',
     'django_forms_bootstrap',
 ]
 

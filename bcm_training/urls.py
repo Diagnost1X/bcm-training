@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
     url(r'^services/', include('services.urls')),
     url(r'^testimonials/', include('testimonials.urls')),
+    url(r'^contact-us/', include('contact_us.urls')),
 ]
