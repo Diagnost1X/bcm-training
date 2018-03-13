@@ -1,15 +1,5 @@
 table {
     font-size: 0.9em;
-    /*border: black solid 1px;*/
-}
-td {
-    /*padding: 3px;
-    border: black solid 1px;*/
-}
-th {
-    /*text-align: center;
-    padding: 3px;
-    border: black solid 1px;*/
 }
 #side-nav li {
     list-style-type: none;
@@ -22,9 +12,7 @@ th {
     display: block;
     text-decoration: none;
     color: white;
-}
-#side-nav li a:focus {
-    color: yellow;
+    padding: 10px 0px;
 }
 #side-nav {
     padding-left: 0;
@@ -42,8 +30,5 @@ th {
     }
     #side-nav li a:hover {
         text-decoration: underline;
-    }
-    #side-nav li a:focus {
-        color: initial;
     }
 }

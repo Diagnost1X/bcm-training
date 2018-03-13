@@ -1,11 +1,36 @@
 {% extends "home/base.html" %}
 {% load static %}
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'contact_us/css/contact_us.css' %}">
+{% endblock head_css %}
 {% block content %}
-    <div class="col-md-12">
-        <div class="text-center">
-            <div class="col-md-offset-2 col-md-8">
-                {% lorem 4 p %}
-            </div>
+    <article class="col-md-4" id="address">
+        <h2 id="address-title">Address</h2>
+        <p id="address-body">
+            BCM Training & Consultancy<br>
+            21 Made Up Street<br>
+            Made Up Town<br>
+            Stoke-on-Trent<br>
+            ST1 4EA<br>
+        </p>
+        <p><strong>Telephone:</strong> 07123456789</p>
+        <p><strong>Email:</strong> louise@bcm-training.com</p>
+    </article>
+    <div class="col-md-8">
+        <div id='map-container'>
+            <iframe id='map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2401.5590383083213!2d-2.1398469331310257!3d52.992331788365526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a699a50dc9a65%3A0xb935cc89832f8e4!2sClarence+Rd%2C+Stoke-on-Trent+ST3+1BD!5e0!3m2!1sen!2suk!4v1520973451402" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
     </div>
+    <section class="col-md-12">
+        <div id="title">
+            <div id="subtitle">
+
+            </div>
+        </div>
+        <div>
+            <form action="#">
+                
+            </form>
+        </div>
+    </section>
 {% endblock content %}
