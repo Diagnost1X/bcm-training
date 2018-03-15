@@ -1,4 +1,5 @@
 {% extends "home/base.html" %}
+{% load bootstrap_tags %}
 {% load static %}
 {% block head_css %}
     <link rel="stylesheet" href="{% static 'contact_us/css/contact_us.css' %}">
@@ -22,14 +23,17 @@
         </div>
     </div>
     <section class="col-md-12">
-        <div id="title">
-            <div id="subtitle">
-
-            </div>
-        </div>
+        <h1>Get in touch</h1>
+        <div id="subtitle">Need more information? Please fill in the form below.</div>
         <div>
-            <form action="#">
-                
+            <form action="/contact-us/" method="post" id="contact-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form | as_bootstrap }}
+                </div>
+                <div class="form-group">
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
         </div>
     </section>

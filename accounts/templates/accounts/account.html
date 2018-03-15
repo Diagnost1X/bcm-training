@@ -16,7 +16,7 @@
     </script>
 {% endblock head_js %}
 {% block content %}
-    <div class="col-md-3">
+    <div class="col-md-2">
         <h4>Welcome, {{ user.first_name }}!</h4>
         <br>
         <ul id="side-nav">
@@ -27,7 +27,7 @@
             <li><a href="{% url 'change_password' request.user.id %}">Change Password</a></li>
         </ul>
     </div>
-    <section class="col-md-9">
+    <section class="col-md-10">
         <h3 class="text-center">Order History</h3>
         <table id="orderHistory">
             <thead>

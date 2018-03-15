@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'testimonials',
     'contact_us',
     'django_forms_bootstrap',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
+
+# Captcha Settings
+
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+NOCAPTCHA = True

@@ -25,3 +25,20 @@
 #address {
     font-size: 1.4em;
 }
+#subtitle {
+    font-size: 1.2em;
+    color: darkgrey;
+    margin-bottom: 20px;
+}
+#submit {
+    margin-bottom: 60px;
+}
+/* Ensures recaptcha displays correctly on small screens */
+@media screen and (max-height: 575px) {
+    .g-recaptcha {
+        transform:scale(0.77);
+        -webkit-transform:scale(0.77);
+        transform-origin:0 0;
+        -webkit-transform-origin:0 0;
+    }
+}

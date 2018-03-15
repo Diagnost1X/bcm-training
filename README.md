@@ -13,6 +13,7 @@ The site is built using the powerful Django framework to manage all of the back-
     - Home Page
     - Our Services Page
     - Testimonials
+    - Contact Us
     - Register / Login / Logout
     - User-Authenticated Pages
         - Booking Training Packages
@@ -26,9 +27,7 @@ The site is built using the powerful Django framework to manage all of the back-
         - Order History
     - Stripe Integration
 ### Features Left to Implement
-- Front-End
-    - Contact Us
-    
+- Password Reset Form
 ## Tech Used
 ### The Tech Used Includes:
 - [Bootstrap](http://getbootstrap.com/)
@@ -43,6 +42,8 @@ The site is built using the powerful Django framework to manage all of the back-
     - **jQuery** is used to simplify the use of Javascript and works in conjunction with **Bootstrap**.
 - [DataTables](https://datatables.net/index)
     - I have used the **DataTables jQuery** plugin to allow powerful user control over how they view their data in the order history table in accounts.
+- [django-recaptcha](https://github.com/praekelt/django-recaptcha)
+    - I installed this Django Package to simplify implementing Google's noCAPTCHA reCAPTCHA mechanism for preventing bots in a modern, proven way.
 ## Content Used
 ### Sources
 - [Django Documentation](https://docs.djangoproject.com/en/1.11/)
@@ -54,6 +55,10 @@ The site is built using the powerful Django framework to manage all of the back-
     - [This](https://stackoverflow.com/questions/3798812/how-to-compare-dates-in-django) post helped me better understand the property decorator in Django, where to use it and how to implement it to disable users changing dates that have already passed.
 - [WhiteNoise Documentation](http://whitenoise.evans.io/en/stable/)
     - I used this to see how to properly implement WhiteNoise to help deliver my staticfiles.
+- [Responsive Google Maps Embed](https://www.labnol.org/internet/embed-responsive-google-maps/28333/)
+    - I used this trick to make the embedded Google Maps responsive to all screen sizes.
+- [Responsive Recaptcha](https://geekgoddess.com/how-to-resize-the-google-nocaptcha-recaptcha/)
+    - This page helped me to make the recaptcha responsive for smaller mobile devices.
 ## Features Explained
 - Accounts
     - A check is performed during registration to ensure that email does not already exist. Emails are also forced to lowercase as they are not case-sensitive and it makes checking the database for existing users easier.
@@ -66,7 +71,8 @@ The site is built using the powerful Django framework to manage all of the back-
     - Users can add only one testimonial, which can be edited or deleted as necessary.
     - Care has been taken to only allow users to edit and delete their own testimonials (except if they are staff).
     - Users are prevented from creating more than one testimonial at any one time.
-
+- Contact Us
+    - This page shows the address and location of the business as well as a form to get in touch with the owner, including a recaptcha to prevent spam. The address and location on the map are fictional but would show accurate details in real world use. The form does not submit to anywhere at the current time but in real world use would be automatically compiled into an email to the owner using the django **send_mail** function. The form still contains validation and demonstrates to the user that it has been submitted successfully.
 ## Key Information
 - When attempting to process a transaction from the services page to check the website funcionality please use the following details:
     - Card Number - 4242424242424242
