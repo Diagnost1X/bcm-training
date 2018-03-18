@@ -44,6 +44,8 @@ The site is built using the powerful Django framework to manage all of the back-
     - I have used the **DataTables jQuery** plugin to allow powerful user control over how they view their data in the order history table in accounts.
 - [django-recaptcha](https://github.com/praekelt/django-recaptcha)
     - I installed this Django Package to simplify implementing Google's noCAPTCHA reCAPTCHA mechanism for preventing bots in a modern, proven way.
+- [SendGrid](https://sendgrid.com)
+    - I use **SendGrid** to deliver my password reset emails to the users.
 ## Content Used
 ### Sources
 - [Django Documentation](https://docs.djangoproject.com/en/1.11/)
@@ -59,6 +61,8 @@ The site is built using the powerful Django framework to manage all of the back-
     - I used this trick to make the embedded Google Maps responsive to all screen sizes.
 - [Responsive Recaptcha](https://geekgoddess.com/how-to-resize-the-google-nocaptcha-recaptcha/)
     - This page helped me to make the recaptcha responsive for smaller mobile devices.
+- [SimpleIsBetterThanComplex](https://simpleisbetterthancomplex.com/tutorial/2016/09/19/how-to-create-password-reset-view.html)
+    - This tutorial helped me understand how to use Django's built-in password reset views and urls with my own templates. It also helped me configure the settings for sending mail in Django using SMTP.
 ## Features Explained
 - Accounts
     - A check is performed during registration to ensure that email does not already exist. Emails are also forced to lowercase as they are not case-sensitive and it makes checking the database for existing users easier.

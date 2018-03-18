@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 
 import views
 
@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^(?P<user_id>\d+)/change_password/$', views.change_password, name='change_password'),
     url(r'^(?P<user_id>\d+)/t/(?P<order_id>\d+)/$', views.change_training, name='change_training'),
     url(r'^(?P<user_id>\d+)/c/(?P<order_id>\d+)/$', views.change_consultancy, name='change_consultancy'),
+    url(r'^', include('accounts.password_urls')),
 ]
