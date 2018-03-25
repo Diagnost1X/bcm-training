@@ -13,7 +13,7 @@ from forms import ContactUs
 def contact_us(request):
     if request.method == 'POST':
         form = ContactUs(request.POST)
-        if form.is_valid(): 
+        if form.is_valid():
             messages.success(request, 'Thank you, I will respond to you within 24 hours.')
             return redirect(reverse('contact_us'))
     else:

@@ -1,7 +1,6 @@
 from django import forms
 
-from .models import (Consultancy, ConsultancyPurchase, Training,
-                     TrainingPurchase)
+from .models import ConsultancyPurchase, TrainingPurchase
 
 
 class TrainingForm(forms.ModelForm):
@@ -17,7 +16,7 @@ class TrainingForm(forms.ModelForm):
     class Meta:
         model = TrainingPurchase
         fields = ['training_date']
-        
+
 
 class ConsultancyForm(forms.ModelForm):
     credit_card_number = forms.CharField(label="Card Number", max_length=16)

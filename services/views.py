@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import datetime
-
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -11,9 +9,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.template.context_processors import csrf
 
 import stripe
-from models import Consultancy, ConsultancyPurchase, Training, TrainingPurchase
 
 from .forms import ConsultancyForm, TrainingForm
+from .models import (Consultancy, ConsultancyPurchase, Training,
+                     TrainingPurchase)
 
 stripe.api_key = settings.STRIPE_SECRET
 

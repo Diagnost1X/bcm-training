@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from accounts.models import User
-
 from testimonials.forms import TestimonialForm
 
 
