@@ -55,6 +55,7 @@ The site is built using the powerful Django framework to manage all of the back-
     - [This](https://stackoverflow.com/a/48167311/9429543) post helped me understand how to implement a Django's built-in password change form with my own website design without having to start from scratch.
     - [This](https://stackoverflow.com/a/15400806/9429543) post helped me understand how to disable dates in the datepicker that clients had already booked.
     - [This](https://stackoverflow.com/questions/3798812/how-to-compare-dates-in-django) post helped me better understand the property decorator in Django, where to use it and how to implement it to disable users changing dates that have already passed.
+    - [This](https://stackoverflow.com/a/16143864/9429543) post helped me to implement tests for views where the built in messages module is used.
 - [WhiteNoise Documentation](http://whitenoise.evans.io/en/stable/)
     - I used this to see how to properly implement WhiteNoise to help deliver my staticfiles.
 - [Responsive Google Maps Embed](https://www.labnol.org/internet/embed-responsive-google-maps/28333/)

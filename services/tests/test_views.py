@@ -7,7 +7,6 @@ from django.contrib import messages
 from django.test import TestCase
 
 from accounts.models import User
-from bcm_training.settings import STRIPE_SECRET
 from services.models import (Consultancy, ConsultancyPurchase, Training,
                              TrainingPurchase)
 
