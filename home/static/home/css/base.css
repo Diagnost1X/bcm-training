@@ -47,11 +47,3 @@
         padding-bottom: 40px;
     }
 }
-@media (min-height: 414px) {
-    body {
-        margin-top: 120px;
-    }
-    .navbar-fixed-bottom, .navbar-fixed-top {
-        position: fixed;
-    }
-}

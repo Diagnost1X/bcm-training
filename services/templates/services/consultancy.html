@@ -27,31 +27,39 @@
     <link rel="stylesheet" href="{% static 'home/lib/css/jquery-ui.min.css' %}">
 {% endblock head_css %}
 {% block content %}
-    <h3 class="text-center">Your Purchase Details</h3>
-    <br>
-    <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
-        <section>
-            <div class="text-center alert alert-info">{{ consultancy.name }}<br>£{{ consultancy.price }}</div>
-        </section>
-    </div>
-    <div class="col-md-9">
-        <section>
-            <form role="form" method="post" id="payment-form" action="{{ form_action }}">
-                <div id="credit-card-errors" style="display: none;">
-                    <div class="alert alert-danger" id="stripe-error-message"></div>
-                </div>
-                {% csrf_token %}
-                {{ form | as_bootstrap }}
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" id="validate_card_btn" name="commit" value="Validate Credit Card">
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-3 hidden-xs">
-        <section>
+    <noscript>
+        <style type="text/css">#view-container {display: none;}</style>
+        <div class="noscriptmsg">
+            <h3 class="text-center">You cannot book without JavaScript enabled. Please enable JavaScript and refresh the page to continue.</h3>
+        </div>
+    </noscript>
+    <div id="view-container">
+        <h3 class="text-center">Your Purchase Details</h3>
+        <br>
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+            <section>
                 <div class="text-center alert alert-info">{{ consultancy.name }}<br>£{{ consultancy.price }}</div>
-        </section>
+            </section>
+        </div>
+        <div class="col-md-9">
+            <section>
+                <form role="form" method="post" id="payment-form" action="{{ form_action }}">
+                    <div id="credit-card-errors" style="display: none;">
+                        <div class="alert alert-danger" id="stripe-error-message"></div>
+                    </div>
+                    {% csrf_token %}
+                    {{ form | as_bootstrap }}
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" id="validate_card_btn" name="commit" value="Validate Credit Card">
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div class="col-md-3 hidden-xs">
+            <section>
+                    <div class="text-center alert alert-info">{{ consultancy.name }}<br>£{{ consultancy.price }}</div>
+            </section>
+        </div>
     </div>
 {% endblock content %}
 {% block foot_js %}{% endblock foot_js %}
