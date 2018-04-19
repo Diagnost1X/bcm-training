@@ -15,6 +15,7 @@ The site is built using the powerful Django framework to manage all of the back-
     - Testimonials
     - Contact Us
     - Register / Login / Logout
+    - Password Reset Form
     - User-Authenticated Pages
         - Booking Training Packages
         - Arranging Consultancy Meetings
@@ -27,7 +28,7 @@ The site is built using the powerful Django framework to manage all of the back-
         - Order History
     - Stripe Integration
 ### Features Left to Implement
-- Password Reset Form
+- None!
 ## Tech Used
 ### The Tech Used Includes:
 - [Bootstrap](http://getbootstrap.com/)
