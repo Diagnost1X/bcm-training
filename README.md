@@ -116,5 +116,7 @@ STRIPE_PUBLISHABLE = 'YOUR_TEST_STRIPE_PUBLISHABLE_KEY'
 STRIPE_SECRET = 'YOUR_TEST_STRIPE_SECRET_KEY'
 ```
 You can then repeat all tests again by running `python manage.py test --settings=local_settings`
+## Wireframes
+Wireframes for this project can be viewed [here](wireframes)
 ## Please view the website on the link below
 <https://bcm-training.herokuapp.com>
