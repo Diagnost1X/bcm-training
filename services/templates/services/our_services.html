@@ -4,6 +4,16 @@
     <link rel="stylesheet" href="{% static 'services/css/services.css' %}">
 {% endblock head_css %}
 {% block content %}
+    {% if not user.is_authenticated %}
+        <div class="col-md-12">
+            <div class="text-center alert alert-warning alert-dismissable fade in">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Once you've <a href="{% url 'register' %}">registered</a>, you can <a href="{% url 'login' %}">login</a> and revisit this page to purchase packages.
+            </div>
+        </div>
+    {% endif %}
     <div class="col-md-6">
         <h2 class="text-center">Training</h2>
         {% for training in training %}
@@ -51,7 +61,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="2"><div id="con-description{{ forloop.counter }}" class="collapse">{{ consultancy.description }}</div></td>
+                        <td colspan="2"><div id="con-description{{ forloop.counter }}" class="collapse in">{{ consultancy.description }}</div></td>
                     </tr>
                     <tr>
                         {% if user.is_authenticated %}

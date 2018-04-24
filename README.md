@@ -84,5 +84,37 @@ The site is built using the powerful Django framework to manage all of the back-
     - Card Number - 4242424242424242
     - CVV - Any three digit number
     - Expiry - Any date in the future
+## Testing
+I have used Django's built in Unit Testing to perform a multitude of automated tests on this project. Python is required for the steps below. Please follow the steps to run these tests:
+1. Clone this repository
+    - `git clone https://github.com/Diagnost1X/bcm-training.git`
+1. Change Directory into the respository
+    - `cd bcm-training`
+1. **(Optional)** Create and activate a virtual environment
+1. Run `pip install -r dev-requirements.txt`
+1. Create a file called `local_settings.py` in the base directory
+1. Structure the file as follows
+    ```python
+    from bcm_training.settings import *
+
+
+    SECRET_KEY = 'FOR_TESTING_ONLY'
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+    ```
+1. Run `python manage.py test --settings=local_settings`
+
+### PLEASE NOTE
+Even after following the above steps, 4 of the **Stripe** based tests will fail due to not having a valid **Publishable** and **Secret** key. If you would like to test these and see them pass, you will need to append the below code to the bottom of the `local_settings.py` file we just created above replacing `YOUR_TEST_STRIPE_PUBLISHABLE_KEY` and `YOUR_TEST_STRIPE_SECRET_KEY` with your own **Stripe** test keys respectively.
+```python
+STRIPE_PUBLISHABLE = 'YOUR_TEST_STRIPE_PUBLISHABLE_KEY'
+STRIPE_SECRET = 'YOUR_TEST_STRIPE_SECRET_KEY'
+```
+You can then repeat all tests again by running `python manage.py test --settings=local_settings`
 ## Please view the website on the link below
 <https://bcm-training.herokuapp.com>
